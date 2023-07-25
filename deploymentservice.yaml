@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: Image-service
+  name: dot
 spec:
   selector:
     app: dev
