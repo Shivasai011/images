@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: Images
+spec:
+  selector:
+    matchLabels:
+      app: dev
+  replicas: 2 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: dev
+    spec:
+      containers:
+        - name: test-image
+          image: shivabogem/images # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000 # The port that the container is running on in the cluster
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: Image-service
+spec:
+  selector:
+    app: dev
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: NodePort
