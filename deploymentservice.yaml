@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment # Kubernetes resource kind we are creating
 metadata:
-  name: Images
+  name: deploy-images
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,7 @@ spec:
         app: dev
     spec:
       containers:
-        - name: test-image
+        - name: test
           image: shivabogem/images # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
